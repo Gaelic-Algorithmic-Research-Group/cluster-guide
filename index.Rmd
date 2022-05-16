@@ -1,10 +1,8 @@
 ---
-title: "User Guide for the UCSB Server Clusters"
-author: ""
+title: "User Guide for the Eddie Server Clusters"
+author: "Junfan & GitHub"
 date: "`r Sys.Date()`"
-description: "A guide to the UCSB server clusters"
-url: "https://emlab-ucsb.github.io/cluster-guide/"
-github-repo: "emlab-ucsb/cluster-guide"
+description: "A guide to the Eddie server clusters"
 site: bookdown::bookdown_site
 documentclass: book
 favicon: "favicon.png"
@@ -12,7 +10,7 @@ favicon: "favicon.png"
 
 # Overview {-}
 
-The Center for Scientific Computing (CSC) at UCSB provides free resources and support for research involving high performance computing (HPC), including multiple server clusters for storing and analyzing data. Find out more information at <http://csc.cnsi.ucsb.edu/>.
+The University provides free resources and support for research involving high performance computing (HPC), including multiple server clusters for storing and analyzing data. Find out more information at <https://www.wiki.ed.ac.uk/display/ResearchServices/Eddie>.
 
 This guide will help you access and use the UCSB server clusters effectively.
 
@@ -23,8 +21,7 @@ Use cases for HPC include:
   * lengthy computation times
   * restricted-use data
 
-For a broader introduction to HPC with clusters, see the HPC Carpentry's lessons at <https://hpc-carpentry.github.io/>.
+For a broader introduction to HPC with clusters, see the HPC Carpentry's lessons at <https://hpc-carpentry.github.io/>, or work through the [exercises](https://www.wiki.ed.ac.uk/display/ResearchServices/Courses)
 
-The software available on the UCSB clusters includes R, Stata, Python, Julia, MATLAB, Git, and $\LaTeX$. Additional information about available software can be found at <http://csc.cnsi.ucsb.edu/docs/scientific-software>.
 
-Please acknowledge the CSC in publications and presentations if you are using the clusters in your research. Also send the CSC the citations for your papers and presentations so they can include them in their publications list.
+Please acknowledge the Eddie in publications and presentations if you are using the clusters in your research.
