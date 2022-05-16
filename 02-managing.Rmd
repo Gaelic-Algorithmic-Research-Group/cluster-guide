@@ -1,0 +1,104 @@
+---
+title: "Managing files"
+output: html_document
+---
+
+# Managing files
+
+Both Pod and Knot allow for 4 TB of file storage per user and more can be requested if needed. File management on the server clusters involves commonly used Linux commands to navigate and modify files and folders. The generic setup is
+
+```
+$ command [options] <arguments>
+```
+
+Most of the following commands have multiple options that are not covered here. For detailed documentation enter the command `man <command>`. Additionally, for a broader introduction to Linux commands see the Software Carpentry's lessons at <http://swcarpentry.github.io/shell-novice/>.
+
+## Navigation
+
+`pwd` - present working directory
+
+`cd dir` - change directory (`dir` specifies directory path)  
+`cd` - change to home directory (`/home/user`)  
+`cd ..` - change to directory above current directory
+
+`ls` - list all files in current directory  
+`ls -a` - list all files, including hidden files  
+`ls -l` - list all files with permission information
+
+`cp source destination` - copy file  
+`mv source destination` - move file
+
+`mkdir name` - make directory  
+`mkdir -m 770 name` - make directory with permissions (770 or other number)
+
+`rm file` - remove file  
+`rmdir dir` - remove empty directory (equivalent to `rm -d dir`)  
+`rm -r dir` - remove non-empty directory
+
+`shred -uz file` - securely overwrite and delete file
+
+## Viewing, creating, and editing files
+
+`file file.txt` - view file type information  
+`stat file.txt` - view file information
+
+`more file.txt` - view text file one screen at a time (to exit press `q`)  
+`less file.txt` - view text file with scrolling (to exit press `q`)
+
+`head file.csv` - print first ten rows of text file  
+`tail file.csv` - print last ten rows of text file
+
+`head -1 file.csv` - print column names if in first row of text file  
+
+`cut -d , -f 2,4-6 file.csv | less` - view specific columns of CSV file by number position (e.g., 2,4-6)
+
+To view CSV files with pretty output, enter  
+`cat file.csv | sed -e 's/,,/, ,/g' | column -s, -t | less -#5 -N -S`  
+Note: This may not work well for all files. Use arrow keys to navigate and press `q` to exit.
+
+`cat > file.txt` - create new text file (to save and exit press `Ctrl+D`)  
+`nano` - create new text file using nano text editor  
+`nano file.txt` - view and edit text file using nano text editor
+
+`zip -r file.zip file1 folder1` - create compressed ZIP file with recursion  
+`unzip file.zip` - extract ZIP file into working directory
+
+## Permissions
+
+Sometimes file and folder permissions need to be modified, such as to restrict access to files. On Linux, read, write, and execute permissions are represented by octal notation and applied to the file owner, groups, and all other users.
+
+| # | Permission | rwx |
+| :--- | :--- | :--- |
+| 7 | read, write, and execute | rwx |
+| 6 | read and write | rw- |
+| 5 | read and execute | r-x |
+| 4 | read only | r-- |
+| 3 | write and execute | -wx |
+| 2 | write only | -w- |
+| 1 | execute only | --x |
+| 0 | none | --- |
+
+Common permissions include
+
+`-rwxrwx---` = `770` - owner and group can do everything, but others can do nothing  
+`-rwxr-x---` = `750` - owner can do everything, group can read and execute only, but others can do nothing  
+`-rwx------` = `700` - owner can do everything, but group and others can do nothing
+
+To change permissions enter
+
+`chmod 770 dir` - change permissions for file or directory  
+`chmod -R 770 dir` - change permissions recursively for directory  
+`chgrp group file` - change group ownership for file or directory
+
+## Shortcuts
+
+`Ctrl+A` - move to beginning of line  
+`Ctrl+E` - move to end of line  
+`Ctrl+U` - clear line from cursor  
+`Ctrl+C` - cancel command  
+`~` - home directory  
+`.` - current directory  
+`..` - one directory up  
+`*` - wildcard completion  
+`Tab key` - autocompletion  
+`Up and down arrow keys` - cycle through command history

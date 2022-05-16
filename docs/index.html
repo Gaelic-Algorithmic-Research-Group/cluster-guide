@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>User Guide for the UCSB Server Clusters</title>
+  <meta name="description" content="A guide to the UCSB server clusters" />
+  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="User Guide for the UCSB Server Clusters" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://emlab-ucsb.github.io/cluster-guide/" />
+  
+  <meta property="og:description" content="A guide to the UCSB server clusters" />
+  <meta name="github-repo" content="emlab-ucsb/cluster-guide" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="User Guide for the UCSB Server Clusters" />
+  
+  <meta name="twitter:description" content="A guide to the UCSB server clusters" />
+  
+
+
+
+<meta name="date" content="2022-05-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+
+<link rel="next" href="accessing-the-server-clusters.html"/>
+<script src="assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="1" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html"><i class="fa fa-check"></i><b>1</b> Accessing the server clusters</a><ul>
+<li class="chapter" data-level="1.1" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html#on-campus"><i class="fa fa-check"></i><b>1.1</b> On campus</a></li>
+<li class="chapter" data-level="1.2" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html#off-campus"><i class="fa fa-check"></i><b>1.2</b> Off campus</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="managing-files.html"><a href="managing-files.html"><i class="fa fa-check"></i><b>2</b> Managing files</a><ul>
+<li class="chapter" data-level="2.1" data-path="managing-files.html"><a href="managing-files.html#navigation"><i class="fa fa-check"></i><b>2.1</b> Navigation</a></li>
+<li class="chapter" data-level="2.2" data-path="managing-files.html"><a href="managing-files.html#viewing-creating-and-editing-files"><i class="fa fa-check"></i><b>2.2</b> Viewing, creating, and editing files</a></li>
+<li class="chapter" data-level="2.3" data-path="managing-files.html"><a href="managing-files.html#permissions"><i class="fa fa-check"></i><b>2.3</b> Permissions</a></li>
+<li class="chapter" data-level="2.4" data-path="managing-files.html"><a href="managing-files.html#shortcuts"><i class="fa fa-check"></i><b>2.4</b> Shortcuts</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="transferring-files.html"><a href="transferring-files.html"><i class="fa fa-check"></i><b>3</b> Transferring files</a><ul>
+<li class="chapter" data-level="3.1" data-path="transferring-files.html"><a href="transferring-files.html#using-scp-to-transfer-files"><i class="fa fa-check"></i><b>3.1</b> Using scp to transfer files</a></li>
+<li class="chapter" data-level="3.2" data-path="transferring-files.html"><a href="transferring-files.html#using-rsync-to-transfer-files"><i class="fa fa-check"></i><b>3.2</b> Using rsync to transfer files</a></li>
+<li class="chapter" data-level="3.3" data-path="transferring-files.html"><a href="transferring-files.html#using-rclone-to-transfer-files"><i class="fa fa-check"></i><b>3.3</b> Using rclone to transfer files</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="submitting-jobs.html"><a href="submitting-jobs.html"><i class="fa fa-check"></i><b>4</b> Submitting jobs</a><ul>
+<li class="chapter" data-level="4.1" data-path="submitting-jobs.html"><a href="submitting-jobs.html#knot"><i class="fa fa-check"></i><b>4.1</b> Knot</a></li>
+<li class="chapter" data-level="4.2" data-path="submitting-jobs.html"><a href="submitting-jobs.html#pod"><i class="fa fa-check"></i><b>4.2</b> Pod</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="using-private-modules.html"><a href="using-private-modules.html"><i class="fa fa-check"></i><b>5</b> Using Private Modules</a></li>
+<li class="chapter" data-level="6" data-path="wiki.html"><a href="wiki.html"><i class="fa fa-check"></i><b>6</b> Wiki</a></li>
+<li class="chapter" data-level="7" data-path="example-using-r.html"><a href="example-using-r.html"><i class="fa fa-check"></i><b>7</b> Example: Using R</a><ul>
+<li class="chapter" data-level="7.1" data-path="example-using-r.html"><a href="example-using-r.html#loading-r"><i class="fa fa-check"></i><b>7.1</b> Loading R</a></li>
+<li class="chapter" data-level="7.2" data-path="example-using-r.html"><a href="example-using-r.html#versions"><i class="fa fa-check"></i><b>7.2</b> Versions</a></li>
+<li class="chapter" data-level="7.3" data-path="example-using-r.html"><a href="example-using-r.html#packages"><i class="fa fa-check"></i><b>7.3</b> Packages</a></li>
+<li class="chapter" data-level="7.4" data-path="example-using-r.html"><a href="example-using-r.html#example-job-files"><i class="fa fa-check"></i><b>7.4</b> Example job files</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="example-using-r.html"><a href="example-using-r.html#knot-1"><i class="fa fa-check"></i><b>7.4.1</b> Knot</a></li>
+<li class="chapter" data-level="7.4.2" data-path="example-using-r.html"><a href="example-using-r.html#pod-1"><i class="fa fa-check"></i><b>7.4.2</b> Pod</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="using-software-containers.html"><a href="using-software-containers.html"><i class="fa fa-check"></i><b>8</b> Using software containers</a></li>
+<li class="chapter" data-level="9" data-path="todo.html"><a href="todo.html"><i class="fa fa-check"></i><b>9</b> TODO</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">User Guide for the UCSB Server Clusters</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">User Guide for the UCSB Server Clusters</h1>
+<p class="date"><em>2022-05-16</em></p>
+</div>
+<div id="overview" class="section level1 unnumbered">
+<h1>Overview</h1>
+<p>The Center for Scientific Computing (CSC) at UCSB provides free resources and support for research involving high performance computing (HPC), including multiple server clusters for storing and analyzing data. Find out more information at <a href="http://csc.cnsi.ucsb.edu/" class="uri">http://csc.cnsi.ucsb.edu/</a>.</p>
+<p>This guide will help you access and use the UCSB server clusters effectively.</p>
+<p>Use cases for HPC include:</p>
+<ul>
+<li>big data</li>
+<li>parallel computing</li>
+<li>lengthy computation times</li>
+<li>restricted-use data</li>
+</ul>
+<p>For a broader introduction to HPC with clusters, see the HPC Carpentry’s lessons at <a href="https://hpc-carpentry.github.io/" class="uri">https://hpc-carpentry.github.io/</a>.</p>
+<p>The software available on the UCSB clusters includes R, Stata, Python, Julia, MATLAB, Git, and <span class="math inline">\(\LaTeX\)</span>. Additional information about available software can be found at <a href="http://csc.cnsi.ucsb.edu/docs/scientific-software" class="uri">http://csc.cnsi.ucsb.edu/docs/scientific-software</a>.</p>
+<p>Please acknowledge the CSC in publications and presentations if you are using the clusters in your research. Also send the CSC the citations for your papers and presentations so they can include them in their publications list.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="accessing-the-server-clusters.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "static"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

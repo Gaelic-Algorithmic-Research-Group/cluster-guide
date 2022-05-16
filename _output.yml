@@ -1,0 +1,17 @@
+---
+bookdown::gitbook:
+  lib_dir: assets
+  split_by: chapter
+  config:
+    toc:
+      collapse: section
+      scroll_highlight: yes
+    toolbar:
+      position: static
+    sharing:
+      github: yes
+      facebook: no
+      twitter: no
+      all: no
+    search: yes
+---

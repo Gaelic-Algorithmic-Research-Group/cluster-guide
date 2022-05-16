@@ -1,0 +1,8 @@
+---
+title: "Using software containers"
+output: html_document
+---
+
+# Using software containers
+
+Software containers can be used on the server clusters via [Singularity](https://sylabs.io/singularity/). Containers enable fully reproducible research by packaging a computing environment and the necessary software packages and applications as a self-contained image file that can be easily transferred to and run on other systems. Containers are also useful for collaborating across different institutions and computing infrastructures. Find out more information at <http://csc.cnsi.ucsb.edu/docs/containers>.

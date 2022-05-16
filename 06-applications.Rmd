@@ -1,0 +1,83 @@
+---
+title: "Using Applications"
+output: html_document
+---
+# Wiki
+From [wiki](https://www.wiki.ed.ac.uk/display/ResearchServices/Applications), it provides a few guidance of using [R](https://www.wiki.ed.ac.uk/display/ResearchServices/R), [Tensorflow](https://www.wiki.ed.ac.uk/display/ResearchServices/Tensorflow), [Matlab](https://www.wiki.ed.ac.uk/display/ResearchServices/Matlab), [Java](https://www.wiki.ed.ac.uk/display/ResearchServices/Java), [Python](https://www.wiki.ed.ac.uk/display/ResearchServices/Python), [Singularity](https://www.wiki.ed.ac.uk/display/ResearchServices/Singularity).
+
+# Example: Using R
+
+R is available on both Knot and Pod, including different versions of R.
+
+## Loading R
+
+To load R on Knot for interactive use, enter the command
+
+```
+$ R
+```
+
+To load R on Pod for interactive use, enter the commands
+
+```
+$ load module R
+$ R
+```
+
+To exit R, use the command `q()`.
+
+Note that the RStudio IDE is not available for use on the clusters.
+
+*Remember: Most analyses should be performed on compute nodes by submitting batch jobs. The login node should only be used for simple analyses, testing, or debugging.*
+
+## Versions
+
+On Knot, the available version of R is 3.2.2.
+
+On Pod, the available versions of R include
+
+```
+R/3.2.2
+R/3.4.4
+R/3.5.1-multith
+R/3.5.1
+```
+
+The default is the latest version. To load a specific version, for example, use the command `load module R/3.4.4`.
+
+A different version of R can be installed inside your home directory. For more info see <http://csc.cnsi.ucsb.edu/docs/using-r-knot-braid-and-pod>.
+
+## Packages
+
+Packages can be installed using the R command `install.packages("<package>")` and should be stored inside your home folder. When using this command you may be prompted to select a CRAN mirror from which to download; select a USA (CA) mirror with an HTTPS connection for a fast and secure download. R should automatically add the home-based package library to `.libPaths()` (enter this command to confirm) and set it as default.
+
+## Example job files
+
+### Knot
+
+```
+#!/bin/bash
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=2:00:00
+#PBS -m abe
+#PBS -M user@ucsb.edu
+
+cd $PBS_O_WORKDIR
+
+Rscript --vanilla script.R
+```
+
+### Pod
+
+```
+#!/bin/bash -l
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --time=2:00:00
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=user@ucsb.edu
+
+cd $SLURM_SUBMIT_DIR
+
+module load R
+Rscript --vanilla script.R
+```

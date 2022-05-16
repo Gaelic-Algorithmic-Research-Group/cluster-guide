@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Using Stata | User Guide for the UCSB Server Clusters</title>
+  <meta name="description" content="A guide to the UCSB server clusters" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Using Stata | User Guide for the UCSB Server Clusters" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://emlab-ucsb.github.io/cluster-guide/" />
+  
+  <meta property="og:description" content="A guide to the UCSB server clusters" />
+  <meta name="github-repo" content="emlab-ucsb/cluster-guide" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Using Stata | User Guide for the UCSB Server Clusters" />
+  
+  <meta name="twitter:description" content="A guide to the UCSB server clusters" />
+  
+
+
+
+<meta name="date" content="2019-12-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<link rel="prev" href="using-r.html"/>
+<link rel="next" href="using-software-containers.html"/>
+<script src="assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="1" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html"><i class="fa fa-check"></i><b>1</b> Accessing the server clusters</a><ul>
+<li class="chapter" data-level="1.1" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html#on-campus"><i class="fa fa-check"></i><b>1.1</b> On campus</a></li>
+<li class="chapter" data-level="1.2" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html#off-campus"><i class="fa fa-check"></i><b>1.2</b> Off campus</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="managing-files.html"><a href="managing-files.html"><i class="fa fa-check"></i><b>2</b> Managing files</a><ul>
+<li class="chapter" data-level="2.1" data-path="managing-files.html"><a href="managing-files.html#navigation"><i class="fa fa-check"></i><b>2.1</b> Navigation</a></li>
+<li class="chapter" data-level="2.2" data-path="managing-files.html"><a href="managing-files.html#viewing-creating-and-editing-files"><i class="fa fa-check"></i><b>2.2</b> Viewing, creating, and editing files</a></li>
+<li class="chapter" data-level="2.3" data-path="managing-files.html"><a href="managing-files.html#permissions"><i class="fa fa-check"></i><b>2.3</b> Permissions</a></li>
+<li class="chapter" data-level="2.4" data-path="managing-files.html"><a href="managing-files.html#shortcuts"><i class="fa fa-check"></i><b>2.4</b> Shortcuts</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="transferring-files.html"><a href="transferring-files.html"><i class="fa fa-check"></i><b>3</b> Transferring files</a><ul>
+<li class="chapter" data-level="3.1" data-path="transferring-files.html"><a href="transferring-files.html#using-scp-to-transfer-files"><i class="fa fa-check"></i><b>3.1</b> Using scp to transfer files</a></li>
+<li class="chapter" data-level="3.2" data-path="transferring-files.html"><a href="transferring-files.html#using-rsync-to-transfer-files"><i class="fa fa-check"></i><b>3.2</b> Using rsync to transfer files</a></li>
+<li class="chapter" data-level="3.3" data-path="transferring-files.html"><a href="transferring-files.html#using-rclone-to-transfer-files"><i class="fa fa-check"></i><b>3.3</b> Using rclone to transfer files</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="submitting-jobs.html"><a href="submitting-jobs.html"><i class="fa fa-check"></i><b>4</b> Submitting jobs</a><ul>
+<li class="chapter" data-level="4.1" data-path="submitting-jobs.html"><a href="submitting-jobs.html#knot"><i class="fa fa-check"></i><b>4.1</b> Knot</a></li>
+<li class="chapter" data-level="4.2" data-path="submitting-jobs.html"><a href="submitting-jobs.html#pod"><i class="fa fa-check"></i><b>4.2</b> Pod</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="using-r.html"><a href="using-r.html"><i class="fa fa-check"></i><b>5</b> Using R</a><ul>
+<li class="chapter" data-level="5.1" data-path="using-r.html"><a href="using-r.html#loading-r"><i class="fa fa-check"></i><b>5.1</b> Loading R</a></li>
+<li class="chapter" data-level="5.2" data-path="using-r.html"><a href="using-r.html#versions"><i class="fa fa-check"></i><b>5.2</b> Versions</a></li>
+<li class="chapter" data-level="5.3" data-path="using-r.html"><a href="using-r.html#packages"><i class="fa fa-check"></i><b>5.3</b> Packages</a></li>
+<li class="chapter" data-level="5.4" data-path="using-r.html"><a href="using-r.html#example-job-files"><i class="fa fa-check"></i><b>5.4</b> Example job files</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="using-r.html"><a href="using-r.html#knot-1"><i class="fa fa-check"></i><b>5.4.1</b> Knot</a></li>
+<li class="chapter" data-level="5.4.2" data-path="using-r.html"><a href="using-r.html#pod-1"><i class="fa fa-check"></i><b>5.4.2</b> Pod</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="using-stata.html"><a href="using-stata.html"><i class="fa fa-check"></i><b>6</b> Using Stata</a><ul>
+<li class="chapter" data-level="6.1" data-path="using-stata.html"><a href="using-stata.html#loading-stata"><i class="fa fa-check"></i><b>6.1</b> Loading Stata</a></li>
+<li class="chapter" data-level="6.2" data-path="using-stata.html"><a href="using-stata.html#packages-1"><i class="fa fa-check"></i><b>6.2</b> Packages</a></li>
+<li class="chapter" data-level="6.3" data-path="using-stata.html"><a href="using-stata.html#example-job-files-1"><i class="fa fa-check"></i><b>6.3</b> Example job files</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="using-stata.html"><a href="using-stata.html#knot-2"><i class="fa fa-check"></i><b>6.3.1</b> Knot</a></li>
+<li class="chapter" data-level="6.3.2" data-path="using-stata.html"><a href="using-stata.html#pod-2"><i class="fa fa-check"></i><b>6.3.2</b> Pod</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="using-software-containers.html"><a href="using-software-containers.html"><i class="fa fa-check"></i><b>7</b> Using software containers</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">User Guide for the UCSB Server Clusters</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="using-stata" class="section level1">
+<h1><span class="header-section-number">6</span> Using Stata</h1>
+<p>On both Pod and Knot, Stata/MP 15 is available with up to 24 cores. In order to use Stata, you will need to be added to the <code>econ</code> group (contact Fuzzy Rogers - fuz(at)ucsb.edu).</p>
+<p>Note that only two Stata jobs can run concurrently on a cluster, so if you get an inexplicable error after submitting a job—such as SLURM ExitCode 127—then this is likely the reason. You will simply have to wait until one of the running jobs is finished and then re-submit your job.</p>
+<div id="loading-stata" class="section level2">
+<h2><span class="header-section-number">6.1</span> Loading Stata</h2>
+<p>To load Stata on either Knot or Pod for interactive use, enter the command</p>
+<pre><code>$ /sw/stata/stata-mp</code></pre>
+<p>To exit Stata, use the command <code>exit</code>. Specific versions of Stata can be used by entering the <code>version &lt;#&gt;</code> command within Stata.</p>
+<p>To load the Stata GUI, connect to a cluster via an XWindows environment and then enter the command</p>
+<pre><code>$ /sw/stata/xstata-mp</code></pre>
+<p>The GUI can be useful for viewing graphics, but will be relatively slow.</p>
+<p><em>Remember: Most analyses should be performed on compute nodes by submitting batch jobs. The login node should only be used for simple analyses, testing, or debugging.</em></p>
+</div>
+<div id="packages-1" class="section level2">
+<h2><span class="header-section-number">6.2</span> Packages</h2>
+<p>User-written Stata packages can be installed using one of the Stata commands <code>net install &lt;package&gt;</code> or <code>ssc install &lt;package&gt;</code>, depending on the source. These packages should be stored inside your home directory. Point to the packages in do-files by using the Stata command <code>sysdir set PLUS dir</code> where <code>dir</code> should be the path to the <code>ado/plus</code> directory inside your home folder. For personal ado-files and packages that you have written, point to them in do-files by using the Stata command <code>sysdir set PERSONAL dir</code> where <code>dir</code> should be the path to the <code>ado/personal</code> directory inside your home folder.</p>
+</div>
+<div id="example-job-files-1" class="section level2">
+<h2><span class="header-section-number">6.3</span> Example job files</h2>
+<p>These job files run Stata in batch mode (<code>-b</code>), which automatically creates a plain-text log file in the current working directory. As a result, log commands do not necessarily need to be included in do-files.</p>
+<p>To change Stata’s temporary files directory, in the job file include the command <code>export STATATMP=dir</code> where <code>dir</code> is the directory of your choice.</p>
+<p>Note that Stata has a <code>set processors &lt;#&gt;</code> command that should be included in do-files and match the requested resources in job files (up to 24 processors). Similarly, there is a <code>set max_memory &lt;#&gt;</code> command that should also be included (see Stata on Linux issue <a href="https://www.stata.com/manuals/dmemory.pdf#dmemoryRemarksandexamplesSeriousbuginLinuxOS">here</a>).</p>
+<div id="knot-2" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> Knot</h3>
+<pre><code>#!/bin/bash
+#PBS -l nodes=1:ppn=12
+#PBS -l walltime=2:00:00
+#PBS -V
+#PBS -m abe
+#PBS -M user@ucsb.edu
+
+cd $PBS_O_WORKDIR/
+
+/sw/stata/stata-mp -b do script.do</code></pre>
+</div>
+<div id="pod-2" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> Pod</h3>
+<pre><code>#!/bin/bash
+#SBATCH --nodes=1 --ntasks-per-node=24
+#SBATCH --time=2:00:00
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=user@ucsb.edu
+
+cd $SLURM_SUBMIT_DIR
+
+export STATATMP=/home/user
+
+/sw/stata/stata-mp -b do script.do</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="using-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="using-software-containers.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "static"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

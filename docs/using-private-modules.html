@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Using Private Modules | User Guide for the UCSB Server Clusters</title>
+  <meta name="description" content="A guide to the UCSB server clusters" />
+  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Using Private Modules | User Guide for the UCSB Server Clusters" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://emlab-ucsb.github.io/cluster-guide/" />
+  
+  <meta property="og:description" content="A guide to the UCSB server clusters" />
+  <meta name="github-repo" content="emlab-ucsb/cluster-guide" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Using Private Modules | User Guide for the UCSB Server Clusters" />
+  
+  <meta name="twitter:description" content="A guide to the UCSB server clusters" />
+  
+
+
+
+<meta name="date" content="2022-05-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<link rel="prev" href="submitting-jobs.html"/>
+<link rel="next" href="wiki.html"/>
+<script src="assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="1" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html"><i class="fa fa-check"></i><b>1</b> Accessing the server clusters</a><ul>
+<li class="chapter" data-level="1.1" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html#on-campus"><i class="fa fa-check"></i><b>1.1</b> On campus</a></li>
+<li class="chapter" data-level="1.2" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html#off-campus"><i class="fa fa-check"></i><b>1.2</b> Off campus</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="managing-files.html"><a href="managing-files.html"><i class="fa fa-check"></i><b>2</b> Managing files</a><ul>
+<li class="chapter" data-level="2.1" data-path="managing-files.html"><a href="managing-files.html#navigation"><i class="fa fa-check"></i><b>2.1</b> Navigation</a></li>
+<li class="chapter" data-level="2.2" data-path="managing-files.html"><a href="managing-files.html#viewing-creating-and-editing-files"><i class="fa fa-check"></i><b>2.2</b> Viewing, creating, and editing files</a></li>
+<li class="chapter" data-level="2.3" data-path="managing-files.html"><a href="managing-files.html#permissions"><i class="fa fa-check"></i><b>2.3</b> Permissions</a></li>
+<li class="chapter" data-level="2.4" data-path="managing-files.html"><a href="managing-files.html#shortcuts"><i class="fa fa-check"></i><b>2.4</b> Shortcuts</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="transferring-files.html"><a href="transferring-files.html"><i class="fa fa-check"></i><b>3</b> Transferring files</a><ul>
+<li class="chapter" data-level="3.1" data-path="transferring-files.html"><a href="transferring-files.html#using-scp-to-transfer-files"><i class="fa fa-check"></i><b>3.1</b> Using scp to transfer files</a></li>
+<li class="chapter" data-level="3.2" data-path="transferring-files.html"><a href="transferring-files.html#using-rsync-to-transfer-files"><i class="fa fa-check"></i><b>3.2</b> Using rsync to transfer files</a></li>
+<li class="chapter" data-level="3.3" data-path="transferring-files.html"><a href="transferring-files.html#using-rclone-to-transfer-files"><i class="fa fa-check"></i><b>3.3</b> Using rclone to transfer files</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="submitting-jobs.html"><a href="submitting-jobs.html"><i class="fa fa-check"></i><b>4</b> Submitting jobs</a><ul>
+<li class="chapter" data-level="4.1" data-path="submitting-jobs.html"><a href="submitting-jobs.html#knot"><i class="fa fa-check"></i><b>4.1</b> Knot</a></li>
+<li class="chapter" data-level="4.2" data-path="submitting-jobs.html"><a href="submitting-jobs.html#pod"><i class="fa fa-check"></i><b>4.2</b> Pod</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="using-private-modules.html"><a href="using-private-modules.html"><i class="fa fa-check"></i><b>5</b> Using Private Modules</a></li>
+<li class="chapter" data-level="6" data-path="wiki.html"><a href="wiki.html"><i class="fa fa-check"></i><b>6</b> Wiki</a></li>
+<li class="chapter" data-level="7" data-path="example-using-r.html"><a href="example-using-r.html"><i class="fa fa-check"></i><b>7</b> Example: Using R</a><ul>
+<li class="chapter" data-level="7.1" data-path="example-using-r.html"><a href="example-using-r.html#loading-r"><i class="fa fa-check"></i><b>7.1</b> Loading R</a></li>
+<li class="chapter" data-level="7.2" data-path="example-using-r.html"><a href="example-using-r.html#versions"><i class="fa fa-check"></i><b>7.2</b> Versions</a></li>
+<li class="chapter" data-level="7.3" data-path="example-using-r.html"><a href="example-using-r.html#packages"><i class="fa fa-check"></i><b>7.3</b> Packages</a></li>
+<li class="chapter" data-level="7.4" data-path="example-using-r.html"><a href="example-using-r.html#example-job-files"><i class="fa fa-check"></i><b>7.4</b> Example job files</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="example-using-r.html"><a href="example-using-r.html#knot-1"><i class="fa fa-check"></i><b>7.4.1</b> Knot</a></li>
+<li class="chapter" data-level="7.4.2" data-path="example-using-r.html"><a href="example-using-r.html#pod-1"><i class="fa fa-check"></i><b>7.4.2</b> Pod</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="using-software-containers.html"><a href="using-software-containers.html"><i class="fa fa-check"></i><b>8</b> Using software containers</a></li>
+<li class="chapter" data-level="9" data-path="todo.html"><a href="todo.html"><i class="fa fa-check"></i><b>9</b> TODO</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">User Guide for the UCSB Server Clusters</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="using-private-modules" class="section level1">
+<h1><span class="header-section-number">5</span> Using Private Modules</h1>
+<p>It would be slightly different from other HPC platform, when we want to use our own module, we will have to</p>
+<p>You will have three steps to go: - Install the software by making with binary files (note: <code>./configure --prefix=/home/path</code>) - Make Private Module files inside the private module path <code>$MODULEPATH</code> - (<code>export MODULEPATH=$HOME/privatemodules:$MODULEPATH</code>) - Private Module file format could be found in the following example - Module load as ususal: `module load package/version_num ## Example of python 3.10</p>
+<ul>
+<li><p>Install python 3.10 from official website (skip)</p></li>
+<li>Configure HPC (just do it once)</li>
+<li><code>vim .bashrc</code></li>
+<li>add <code>export MODULEPATH=$HOME/privatemodules:$MODULEPATH</code></li>
+<li><p><code>source .bashrc</code></p></li>
+<li><p>Add <code>~/privatemodules/python/3.10</code></p>
+<pre><code>#%Module########################################################################
+#
+# python 3.10.4 module file
+
+proc ModulesHelp { } {
+    puts stderr &quot;\tAdds python 3.10.4 to your environment&quot;
+}
+
+module-whatis &quot;Loads Python 3.10.4&quot;
+
+prepend-path PATH ~/src/bin
+prepend-path LD_LIBRARY_PATH ~/src/lib
+prepend-path C_INCLUDE_PATH ~/src/include
+prepend-path PKG_CONFIG_PATH ~/src/lib/pkgconfig
+prepend-path MANPATH ~/src/share/man
+prepend-path PYTHONPATH ~/src/lib/python3.10</code></pre></li>
+<li><p>Module load: <code>module load python/3.10</code></p></li>
+</ul>
+<p>Now it is really to go :)</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="submitting-jobs.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="wiki.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "static"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+---
+title: "Transferring files"
+output: html_document
+---
+
+# Transferring files
+
+To transfer files between a server and your local computer, use `scp` or `rsync` commands in the terminal or use a SFTP GUI app. On macOS, [Cyberduck](https://cyberduck.io/) and [FileZilla](https://filezilla-project.org/) are good options. On Windows, [WinSCP](https://winscp.net/eng/index.php), Cyberduck, and FileZilla are good options. On Linux, FileZilla is a good option. Another option is to use [Globus Online](http://csc.cnsi.ucsb.edu/docs/globus-online), a web app focused on large file transfers that allows pauses and breaks without loss of data.
+
+## Using scp to transfer files
+
+The `scp` command provides secure copying of files. For more detailed documentation enter the command `man scp`.
+
+The generic setup for an scp command is
+
+```
+$ scp [options] <source> <destination>
+```
+
+To copy a single file from a local computer to the Pod cluster, the scp command is
+
+```
+$ scp /path/to/file.txt user@eddie.ecdf.ed.ac.uk:/home/user
+```
+
+To copy an entire directory from a local computer to the Pod server cluster, the typical scp command is
+
+```
+$ scp -r /path/to/project user@eddie.ecdf.ed.ac.uk:/home/user
+```
+
+where the `-r` option indicates that files should be transferred recursively, such as subdirectories.
+
+## Using rsync to transfer files
+
+The `rsync` command line tool provides fast, incremental file transfer. The primary use case for rsync is to sync two folders, such as a synced backup folder. Compared to scp, rsync only transfers modified or new files and may also use partial transfers. As a result, rsync is typically faster than scp and SFTP, depending on the options used. For more detailed documentation enter the command `man rsync` or see <https://rsync.samba.org/>. On macOS and Linux, rsync is typically pre-installed. On Windows, you will need to install and use rsync via [Cygwin](https://www.cygwin.com/).
+
+The generic setup for an rsync command is
+
+```
+$ rsync [options] <source> <destination>
+```
+
+To transfer an entire directory from a local computer to the Pod cluster, a typical rsync command with commonly used options is
+
+```
+$ rsync -avzP -e ssh /home/user/project/ user@eddie.ecdf.ed.ac.uk:/home/user/project
+```
+
+This example represents a push transfer. A pull transfer could also be completed by simply switching the source and destination. When transferring entire directories, a forward slash on the source matters but never for the destination. In this case, the 'project' folder has a forward slash and all its contents will be replicated exactly in the destination 'project' folder, copying all contents except the top 'project' folder. Without the forward slash on the source there would be another 'project' folder within the 'project' folder at the destination.
+
+The rsync options can be specified in short or long forms. In this use case, the `-a`  or `--archive` option completely replicates all folders and files, including recursively through all subdirectories while preserving symbolic links, permissions, and ownership. The `-v` or `--verbose` option increases the amount of information that is logged. The `-z` or `--compress` option compresses files during transit to reduce transfer time. The `-P` or `--partial --progress` option enables partially transferred files to be kept in case of a break or pause and also displays the progress of individual file transfers. The `-e ssh` option instructs rysnc to transfer files via SSH, used when transferring to or from a server. Many other options exist, but these are the primary ones used. Additionally, add the `-n` or `--dry-run` option to test what an rsync command will do without actually transferring files.
+
+After the command is submitted, you will be prompted for a password if transferring to or from a server. If you use rsync frequently, then you can also set up SSH keys in order to skip password entry.
+
+For large transfers, sometimes the process needs to be paused and resumed, or sometimes the transfer can be interrupted due to a server, network, or power outage. The `-P` option should always be used to preserve the files or parts of files that have already been transferred and to avoid having to start over. To pause a transfer, use `Ctrl+C`. To resume, resubmit the same rsync command with the `--append` option added, which will restart the transfer where it left off. When syncing to a backup folder, add the `--delete` option to delete files and folders in the destination that have been deleted in the source.
+
+## Using rclone to transfer files
+
+The `rclone` command line tool transfers files to and from cloud storage services, like UCSB-provided unlimited Google Drive or Box storage. rclone is designed after rsync and its commands look similar. You will need to configure rclone so that it can access your cloud storage services. For detailed documentation see <https://rclone.org/>.

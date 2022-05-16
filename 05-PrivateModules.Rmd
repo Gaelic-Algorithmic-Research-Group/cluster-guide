@@ -1,0 +1,50 @@
+---
+title: "Private Modules"
+output: html_document
+author: Junfan Huang
+---
+
+# Using Private Modules
+
+It would be slightly different from other HPC platform, when we want to use our own module, we will have to 
+
+You will have three steps to go:
+- Install the software by making with binary files (note: `./configure --prefix=/home/path`)
+- Make Private Module files inside the private module path `$MODULEPATH`
+  - (`export MODULEPATH=$HOME/privatemodules:$MODULEPATH`)
+  - Private Module file format could be found in the following example
+- Module load as ususal: `module load package/version_num
+## Example of python 3.10
+
+
+- Install python 3.10 from official website (skip)
+
+- Configure HPC (just do it once)
+  - `vim .bashrc`
+  - add `export MODULEPATH=$HOME/privatemodules:$MODULEPATH`
+  - `source .bashrc`
+
+- Add `~/privatemodules/python/3.10`
+
+    ```
+    #%Module########################################################################
+    #
+    # python 3.10.4 module file
+
+    proc ModulesHelp { } {
+        puts stderr "\tAdds python 3.10.4 to your environment"
+    }
+
+    module-whatis "Loads Python 3.10.4"
+
+    prepend-path PATH ~/src/bin
+    prepend-path LD_LIBRARY_PATH ~/src/lib
+    prepend-path C_INCLUDE_PATH ~/src/include
+    prepend-path PKG_CONFIG_PATH ~/src/lib/pkgconfig
+    prepend-path MANPATH ~/src/share/man
+    prepend-path PYTHONPATH ~/src/lib/python3.10
+    ```
+
+- Module load: `module load python/3.10`
+
+Now it is really to go :)

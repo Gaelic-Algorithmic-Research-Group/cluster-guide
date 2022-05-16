@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Submitting jobs | User Guide for the UCSB Server Clusters</title>
+  <meta name="description" content="A guide to the UCSB server clusters" />
+  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Submitting jobs | User Guide for the UCSB Server Clusters" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://emlab-ucsb.github.io/cluster-guide/" />
+  
+  <meta property="og:description" content="A guide to the UCSB server clusters" />
+  <meta name="github-repo" content="emlab-ucsb/cluster-guide" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Submitting jobs | User Guide for the UCSB Server Clusters" />
+  
+  <meta name="twitter:description" content="A guide to the UCSB server clusters" />
+  
+
+
+
+<meta name="date" content="2022-05-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<link rel="prev" href="transferring-files.html"/>
+<link rel="next" href="using-private-modules.html"/>
+<script src="assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="1" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html"><i class="fa fa-check"></i><b>1</b> Accessing the server clusters</a><ul>
+<li class="chapter" data-level="1.1" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html#on-campus"><i class="fa fa-check"></i><b>1.1</b> On campus</a></li>
+<li class="chapter" data-level="1.2" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html#off-campus"><i class="fa fa-check"></i><b>1.2</b> Off campus</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="managing-files.html"><a href="managing-files.html"><i class="fa fa-check"></i><b>2</b> Managing files</a><ul>
+<li class="chapter" data-level="2.1" data-path="managing-files.html"><a href="managing-files.html#navigation"><i class="fa fa-check"></i><b>2.1</b> Navigation</a></li>
+<li class="chapter" data-level="2.2" data-path="managing-files.html"><a href="managing-files.html#viewing-creating-and-editing-files"><i class="fa fa-check"></i><b>2.2</b> Viewing, creating, and editing files</a></li>
+<li class="chapter" data-level="2.3" data-path="managing-files.html"><a href="managing-files.html#permissions"><i class="fa fa-check"></i><b>2.3</b> Permissions</a></li>
+<li class="chapter" data-level="2.4" data-path="managing-files.html"><a href="managing-files.html#shortcuts"><i class="fa fa-check"></i><b>2.4</b> Shortcuts</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="transferring-files.html"><a href="transferring-files.html"><i class="fa fa-check"></i><b>3</b> Transferring files</a><ul>
+<li class="chapter" data-level="3.1" data-path="transferring-files.html"><a href="transferring-files.html#using-scp-to-transfer-files"><i class="fa fa-check"></i><b>3.1</b> Using scp to transfer files</a></li>
+<li class="chapter" data-level="3.2" data-path="transferring-files.html"><a href="transferring-files.html#using-rsync-to-transfer-files"><i class="fa fa-check"></i><b>3.2</b> Using rsync to transfer files</a></li>
+<li class="chapter" data-level="3.3" data-path="transferring-files.html"><a href="transferring-files.html#using-rclone-to-transfer-files"><i class="fa fa-check"></i><b>3.3</b> Using rclone to transfer files</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="submitting-jobs.html"><a href="submitting-jobs.html"><i class="fa fa-check"></i><b>4</b> Submitting jobs</a><ul>
+<li class="chapter" data-level="4.1" data-path="submitting-jobs.html"><a href="submitting-jobs.html#knot"><i class="fa fa-check"></i><b>4.1</b> Knot</a></li>
+<li class="chapter" data-level="4.2" data-path="submitting-jobs.html"><a href="submitting-jobs.html#pod"><i class="fa fa-check"></i><b>4.2</b> Pod</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="using-private-modules.html"><a href="using-private-modules.html"><i class="fa fa-check"></i><b>5</b> Using Private Modules</a></li>
+<li class="chapter" data-level="6" data-path="wiki.html"><a href="wiki.html"><i class="fa fa-check"></i><b>6</b> Wiki</a></li>
+<li class="chapter" data-level="7" data-path="example-using-r.html"><a href="example-using-r.html"><i class="fa fa-check"></i><b>7</b> Example: Using R</a><ul>
+<li class="chapter" data-level="7.1" data-path="example-using-r.html"><a href="example-using-r.html#loading-r"><i class="fa fa-check"></i><b>7.1</b> Loading R</a></li>
+<li class="chapter" data-level="7.2" data-path="example-using-r.html"><a href="example-using-r.html#versions"><i class="fa fa-check"></i><b>7.2</b> Versions</a></li>
+<li class="chapter" data-level="7.3" data-path="example-using-r.html"><a href="example-using-r.html#packages"><i class="fa fa-check"></i><b>7.3</b> Packages</a></li>
+<li class="chapter" data-level="7.4" data-path="example-using-r.html"><a href="example-using-r.html#example-job-files"><i class="fa fa-check"></i><b>7.4</b> Example job files</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="example-using-r.html"><a href="example-using-r.html#knot-1"><i class="fa fa-check"></i><b>7.4.1</b> Knot</a></li>
+<li class="chapter" data-level="7.4.2" data-path="example-using-r.html"><a href="example-using-r.html#pod-1"><i class="fa fa-check"></i><b>7.4.2</b> Pod</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="using-software-containers.html"><a href="using-software-containers.html"><i class="fa fa-check"></i><b>8</b> Using software containers</a></li>
+<li class="chapter" data-level="9" data-path="todo.html"><a href="todo.html"><i class="fa fa-check"></i><b>9</b> TODO</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">User Guide for the UCSB Server Clusters</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="submitting-jobs" class="section level1">
+<h1><span class="header-section-number">4</span> Submitting jobs</h1>
+<p>The server clusters are shared resources among researchers, and a job queue process is used to manage and allocate resources among users. A job is simply a set of instructions that includes requests for resources and the specific set of commands—typically as scripts—to be executed, such as commands for transforming or analyzing data. When a user submits a job to the server for execution it enters the queue and is scheduled on a specific compute node for a specific time.</p>
+<div id="knot" class="section level2">
+<h2><span class="header-section-number">4.1</span> Knot</h2>
+<p>The Knot cluster has 112 regular compute nodes with 12 cores per node and either 48 GB or 64 GB of RAM per node. There are also 4 ‘fat’ nodes with either 512 GB or 1 TB of RAM and 6 GPU nodes. Knot uses <a href="http://csc.cnsi.ucsb.edu/docs/example-scripts-running-jobs">TORQUE PBS</a> to schedule jobs.</p>
+<p>To submit a job, first create a new .pbs file with the nano editor using the command</p>
+<pre><code>$ nano submit.pbs</code></pre>
+<p>The typical structure of a .pbs file for a serial job using R is</p>
+<pre><code>#!/bin/bash
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=2:00:00
+#PBS -V
+
+cd $PBS_O_WORKDIR
+
+Rscript --vanilla script.R</code></pre>
+<p>where 1 node with 1 processor is requested with a 2-hour timeframe for computation. The <code>walltime</code> option can be excluded if the computation time is unknown. The default walltime is 75 hours. The <code>cd $PBS_O_WORKDIR</code> changes the working directory to where the .pbs file is located. The <code>Rscript --vanilla script.R</code> line executes the commands in the specified R script. The filepath for the script should be relative to where the .pbs file is located or an absolute path can also be used. This line would change if using different software. There are also many other <code>#PBS</code> options that can be included. Parallel jobs require different specifications, such as requesting more than 1 node and using <code>mpirun</code> commands. Also be sure to include a blank line at the end of the file.</p>
+<p>To submit a job, use the command</p>
+<pre><code>$ qsub submit.pbs</code></pre>
+<p>For jobs that require less than one hour or are used for testing and debugging purposes, use the short queue to minimize waiting time with the command</p>
+<pre><code>$ qsub -q short submit.pbs</code></pre>
+<p>For jobs that require large memory, use the command</p>
+<pre><code>$ qsub -q largemem submit.pbs</code></pre>
+<p>for nodes with 256 GB/node or the command</p>
+<pre><code>$ qsub -q xlargemem submit.pbs</code></pre>
+<p>for nodes with 512 GB/node.</p>
+<p>The <code>qsub</code> command will return a job number. To check the status of a job, use the command</p>
+<pre><code>$ qstat &lt;job number&gt;</code></pre>
+<p>or</p>
+<pre><code>$ qstat -u $USER</code></pre>
+<p>To cancel or delete a job, use the command</p>
+<pre><code>$ qdel &lt;job number&gt;</code></pre>
+<p>The outputs of the analysis in the script will be returned in the same folder as the .pbs file that was submitted, typically with the filename structure <code>submit.pbs.[job number]</code> unless otherwise specified.</p>
+</div>
+<div id="pod" class="section level2">
+<h2><span class="header-section-number">4.2</span> Pod</h2>
+<p>The Pod cluster is the newest on campus and offers the most compute resources. There are 64 regular compute nodes with 40 cores per node and 192 GB of RAM per node. There are also 4 ‘fat’ nodes with 1 TB of RAM per node and 3 GPU nodes. Pod uses <a href="http://csc.cnsi.ucsb.edu/docs/slurm-job-scheduler">SLURM</a> to schedule jobs.</p>
+<p>To submit a job, first create a new .job file with the nano editor using the command</p>
+<pre><code>$ nano submit.job</code></pre>
+<p>The typical structure of a .job file for a serial job using R is</p>
+<pre><code>#!/bin/bash -l
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --time=2:00:00
+
+cd $SLURM_SUBMIT_DIR
+
+module load R
+Rscript --vanilla script.R</code></pre>
+<p>where 1 node with 1 processor is requested. The <code>cd $PBS_O_WORKDIR</code> changes the working directory to where the .job file is located. The <code>module load R</code> line loads R, and then the <code>Rscript --vanilla script.R</code> line executes the commands in the specified R script. The filepath for the script should be relative to where the .job file is located or an absolute path can also be used. These last two lines would change if using different software. There are also many other <code>#SBATCH</code> options that can be included. The default walltime for computation is 32 hours. Parallel jobs require different specifications, such as requesting more than 1 node and using <code>mpirun</code> commands. Also be sure to include a blank line at the end of the file.</p>
+<p>To submit a job, use the command</p>
+<pre><code>$ sbatch submit.job</code></pre>
+<p>For jobs that require less than one hour or are used for testing and debugging purposes, you can use the short queue to minimize waiting time with the command</p>
+<pre><code>$ sbatch -p short submit.job</code></pre>
+<p>For jobs that require large memory, use the command</p>
+<pre><code>$ sbatch -p largemem submit.job</code></pre>
+<p>for nodes with 1 TB/node.</p>
+<p>The <code>sbatch</code> command will return a job number. To check the status of a job, use one of the commands</p>
+<pre><code>$ squeue -j &lt;job number&gt;</code></pre>
+<p>or</p>
+<pre><code>$ squeue -u $USER</code></pre>
+<p>To cancel or delete a job, use the command</p>
+<pre><code>$ scancel &lt;job number&gt;</code></pre>
+<p>The outputs of the analysis in the script will be returned in the same folder as the .job file that was submitted, typically with the filename structure <code>slurm-[jobnumber].out</code> unless otherwise specified.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="transferring-files.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="using-private-modules.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "static"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
