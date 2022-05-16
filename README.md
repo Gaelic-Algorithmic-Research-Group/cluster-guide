@@ -1,6 +1,6 @@
 # Cluster Guide
 
-A user guide for the UCSB server clusters:
+A user guide for the Eddie clusters:
 
 <https://gaelic-algorithmic-research-group.github.io/cluster-guide/>
 
