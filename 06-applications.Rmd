@@ -2,14 +2,14 @@
 title: "Using Applications"
 output: html_document
 ---
-# Wiki
+# Wiki + Example
 From [wiki](https://www.wiki.ed.ac.uk/display/ResearchServices/Applications), it provides a few guidance of using [R](https://www.wiki.ed.ac.uk/display/ResearchServices/R), [Tensorflow](https://www.wiki.ed.ac.uk/display/ResearchServices/Tensorflow), [Matlab](https://www.wiki.ed.ac.uk/display/ResearchServices/Matlab), [Java](https://www.wiki.ed.ac.uk/display/ResearchServices/Java), [Python](https://www.wiki.ed.ac.uk/display/ResearchServices/Python), [Singularity](https://www.wiki.ed.ac.uk/display/ResearchServices/Singularity).
 
-# Example: Using R
+## Example: Using R
 
 R is available on both Knot and Pod, including different versions of R.
 
-## Loading R
+### Loading R
 
 To load R on Knot for interactive use, enter the command
 
@@ -30,7 +30,7 @@ Note that the RStudio IDE is not available for use on the clusters.
 
 *Remember: Most analyses should be performed on compute nodes by submitting batch jobs. The login node should only be used for simple analyses, testing, or debugging.*
 
-## Versions
+### Versions
 
 On Knot, the available version of R is 3.2.2.
 
@@ -47,13 +47,13 @@ The default is the latest version. To load a specific version, for example, use 
 
 A different version of R can be installed inside your home directory. For more info see <http://csc.cnsi.ucsb.edu/docs/using-r-knot-braid-and-pod>.
 
-## Packages
+### Packages
 
 Packages can be installed using the R command `install.packages("<package>")` and should be stored inside your home folder. When using this command you may be prompted to select a CRAN mirror from which to download; select a USA (CA) mirror with an HTTPS connection for a fast and secure download. R should automatically add the home-based package library to `.libPaths()` (enter this command to confirm) and set it as default.
 
-## Example job files
+### Example job files
 
-### Knot
+#### Knot
 
 ```
 #!/bin/bash
@@ -67,7 +67,7 @@ cd $PBS_O_WORKDIR
 Rscript --vanilla script.R
 ```
 
-### Pod
+#### Pod
 
 ```
 #!/bin/bash -l
