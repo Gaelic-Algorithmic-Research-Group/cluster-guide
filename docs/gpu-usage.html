@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Transferring files | User Guide for the Eddie Server Clusters</title>
+  <title>8 GPU Usage | User Guide for the Eddie Server Clusters</title>
   <meta name="description" content="A guide to the Eddie server clusters" />
   <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Transferring files | User Guide for the Eddie Server Clusters" />
+  <meta property="og:title" content="8 GPU Usage | User Guide for the Eddie Server Clusters" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Transferring files | User Guide for the Eddie Server Clusters" />
+  <meta name="twitter:title" content="8 GPU Usage | User Guide for the Eddie Server Clusters" />
   
   <meta name="twitter:description" content="A guide to the Eddie server clusters" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
-<link rel="prev" href="managing-files.html"/>
-<link rel="next" href="submitting-jobs.html"/>
+<link rel="prev" href="using-software-containers.html"/>
+
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -116,35 +116,18 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="transferring-files" class="section level1">
-<h1><span class="header-section-number">3</span> Transferring files</h1>
-<p>To transfer files between a server and your local computer, use <code>scp</code> or <code>rsync</code> commands in the terminal or use a SFTP GUI app. On macOS, <a href="https://cyberduck.io/">Cyberduck</a> and <a href="https://filezilla-project.org/">FileZilla</a> are good options. On Windows, <a href="https://winscp.net/eng/index.php">WinSCP</a>, Cyberduck, and FileZilla are good options. On Linux, FileZilla is a good option. Another option is to use <a href="http://csc.cnsi.ucsb.edu/docs/globus-online">Globus Online</a>, a web app focused on large file transfers that allows pauses and breaks without loss of data.</p>
-<div id="using-scp-to-transfer-files" class="section level2">
-<h2><span class="header-section-number">3.1</span> Using scp to transfer files</h2>
-<p>The <code>scp</code> command provides secure copying of files. For more detailed documentation enter the command <code>man scp</code>.</p>
-<p>The generic setup for an scp command is</p>
-<pre><code>$ scp [options] &lt;source&gt; &lt;destination&gt;</code></pre>
-<p>To copy a single file from a local computer to the Pod cluster, the scp command is</p>
-<pre><code>$ scp /path/to/file.txt user@eddie.ecdf.ed.ac.uk:/home/user</code></pre>
-<p>To copy an entire directory from a local computer to the Pod server cluster, the typical scp command is</p>
-<pre><code>$ scp -r /path/to/project user@eddie.ecdf.ed.ac.uk:/home/user</code></pre>
-<p>where the <code>-r</code> option indicates that files should be transferred recursively, such as subdirectories.</p>
+<div id="gpu-usage" class="section level1">
+<h1><span class="header-section-number">8</span> GPU Usage</h1>
+<p>This section is a quick guide of using GPU nodes. More details could be found from <a href="https://www.wiki.ed.ac.uk/display/ResearchServices/GPUs">here</a>.</p>
+<p>Hey futuer researchers, if you want to train a Neural Net, here might be the right place! I had also struggled a bit when I first got started.</p>
+<div id="quick-start" class="section level2">
+<h2><span class="header-section-number">8.1</span> Quick Start</h2>
+<p>The quickest way is to login to GPU nodes and run code on top of that.</p>
+<pre><code>qlogin -l h_rt=24:00:00 -l h_vmem=16G -pe gpu 4</code></pre>
 </div>
-<div id="using-rsync-to-transfer-files" class="section level2">
-<h2><span class="header-section-number">3.2</span> Using rsync to transfer files</h2>
-<p>The <code>rsync</code> command line tool provides fast, incremental file transfer. The primary use case for rsync is to sync two folders, such as a synced backup folder. Compared to scp, rsync only transfers modified or new files and may also use partial transfers. As a result, rsync is typically faster than scp and SFTP, depending on the options used. For more detailed documentation enter the command <code>man rsync</code> or see <a href="https://rsync.samba.org/" class="uri">https://rsync.samba.org/</a>. On macOS and Linux, rsync is typically pre-installed. On Windows, you will need to install and use rsync via <a href="https://www.cygwin.com/">Cygwin</a>.</p>
-<p>The generic setup for an rsync command is</p>
-<pre><code>$ rsync [options] &lt;source&gt; &lt;destination&gt;</code></pre>
-<p>To transfer an entire directory from a local computer to the Pod cluster, a typical rsync command with commonly used options is</p>
-<pre><code>$ rsync -avzP -e ssh /home/user/project/ user@eddie.ecdf.ed.ac.uk:/home/user/project</code></pre>
-<p>This example represents a push transfer. A pull transfer could also be completed by simply switching the source and destination. When transferring entire directories, a forward slash on the source matters but never for the destination. In this case, the ‘project’ folder has a forward slash and all its contents will be replicated exactly in the destination ‘project’ folder, copying all contents except the top ‘project’ folder. Without the forward slash on the source there would be another ‘project’ folder within the ‘project’ folder at the destination.</p>
-<p>The rsync options can be specified in short or long forms. In this use case, the <code>-a</code> or <code>--archive</code> option completely replicates all folders and files, including recursively through all subdirectories while preserving symbolic links, permissions, and ownership. The <code>-v</code> or <code>--verbose</code> option increases the amount of information that is logged. The <code>-z</code> or <code>--compress</code> option compresses files during transit to reduce transfer time. The <code>-P</code> or <code>--partial --progress</code> option enables partially transferred files to be kept in case of a break or pause and also displays the progress of individual file transfers. The <code>-e ssh</code> option instructs rysnc to transfer files via SSH, used when transferring to or from a server. Many other options exist, but these are the primary ones used. Additionally, add the <code>-n</code> or <code>--dry-run</code> option to test what an rsync command will do without actually transferring files.</p>
-<p>After the command is submitted, you will be prompted for a password if transferring to or from a server. If you use rsync frequently, then you can also set up SSH keys in order to skip password entry.</p>
-<p>For large transfers, sometimes the process needs to be paused and resumed, or sometimes the transfer can be interrupted due to a server, network, or power outage. The <code>-P</code> option should always be used to preserve the files or parts of files that have already been transferred and to avoid having to start over. To pause a transfer, use <code>Ctrl+C</code>. To resume, resubmit the same rsync command with the <code>--append</code> option added, which will restart the transfer where it left off. When syncing to a backup folder, add the <code>--delete</code> option to delete files and folders in the destination that have been deleted in the source.</p>
-</div>
-<div id="using-rclone-to-transfer-files" class="section level2">
-<h2><span class="header-section-number">3.3</span> Using rclone to transfer files</h2>
-<p>The <code>rclone</code> command line tool transfers files to and from cloud storage services, like UCSB-provided unlimited Google Drive or Box storage. rclone is designed after rsync and its commands look similar. You will need to configure rclone so that it can access your cloud storage services. For detailed documentation see <a href="https://rclone.org/" class="uri">https://rclone.org/</a>.</p>
+<div id="ask-for-help" class="section level2">
+<h2><span class="header-section-number">8.2</span> Ask for help</h2>
+<p>Mike is really helpful when I was here. Every Thursday from 2-4 PM in 2022, we will be able to ask questions with Teams. You will be able to receive an email from Mike at that time :)</p>
 
 </div>
 </div>
@@ -153,8 +136,8 @@
           </div>
         </div>
       </div>
-<a href="managing-files.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="submitting-jobs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="using-software-containers.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

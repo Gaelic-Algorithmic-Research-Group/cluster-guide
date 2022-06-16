@@ -4,6 +4,20 @@ output: html_document
 author: Junfan Huang
 ---
 
-# TODO
+# GPU Usage
 
-This section is a quick guide of using GPU nodes.
+This section is a quick guide of using GPU nodes. More details could be found from [here](https://www.wiki.ed.ac.uk/display/ResearchServices/GPUs).
+
+Hey futuer researchers, if you want to train a Neural Net, here might be the right place! I had also struggled a bit when I first got started. 
+
+## Quick Start
+
+The quickest way is to login to GPU nodes and run code on top of that.
+
+```
+qlogin -l h_rt=24:00:00 -l h_vmem=16G -pe gpu 4
+```
+
+## Ask for help
+
+Mike is really helpful when I was here. Every Thursday from 2-4 PM in 2022, we will be able to ask questions with Teams. You will be able to receive an email from Mike at that time :)
