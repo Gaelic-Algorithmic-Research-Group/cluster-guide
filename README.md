@@ -4,6 +4,11 @@ A user guide for the Eddie clusters:
 
 <https://gaelic-algorithmic-research-group.github.io/cluster-guide/>
 
+## GitPod Usage [click me](https://gitpod.io/#https://github.com/Gaelic-Algorithmic-Research-Group/cluster-guide)
+
+For some reason, `setup.R` is not working here. You will just need to run R in the terminal and run `bookdown::render_book(input = "index.Rmd")` to update this guidebook.
+
+
 
 ## Contributing
 
