@@ -18,6 +18,201 @@ The quickest way is to login to GPU nodes and run code on top of that.
 qlogin -l h_rt=24:00:00 -l h_vmem=16G -pe gpu 4
 ```
 
+## Advanced Usage (Adapted from BU.EDU)
+I found this University <https://www.bu.edu/engit/knowledge-base/grid/gpu/> had a simliar cluster system as we have in Eddie. Here is the tutorial adapted from that website in case it will disappear.
+
+### GPU-enabled Grid queues
+The current GPU-enabled queues on the ENG-Grid are:
+
+Skill this.
+```
+gpu.q    -- 1 GPU and 2 CPU cores per 4GB RAM workstation node
+            Currently 16 nodes with a total of 16 GeForce Kepler GTX 650 (2GB) GPUs
+            (they additionally have small Quadro NVS GPUs (256MB) attached to the displays, not really useful for CUDA)
+budge.q  -- 8 GPUs and 8 CPU cores per 24GB RAM per node
+            Currently 2 nodes with a total of 16 GPUs:  8 non-Fermi Tesla M1060's (4GB), 6 Tesla Fermi M2050's, and 2 Tesla Fermi M2090's (6GB)
+bungee.q -- 2 or 3 GPUs and 8 CPU cores per 24GB RAM node, with QDR InfiniBand networking
+            Currently 3 nodes with 1 Tesla Kepler K20 (6GB) and 2 Tesla Fermi M2070/2075's (6GB) each, plus 13 nodes with 2 Tesla Fermi M2070/2075's (6GB) each. 
+            (Divided into bungee.q and bungee-exclusive.q for use by buy-in researchers)
+gpuinteractive.q -- a subset of budge.q intended for GPU but not CPU-intensive "qlogin" jobs
+```
+If you wish to be added to the permissions list to use these queues, please email.
+
+### Using GPU resources
+
+For GPU submission on the Grid, we have configured a consumable resource complex called “gpu” on these queues. Each host has an integer quantity of the gpu resource corresponding to the number of GPUs in it. Machines with Fermi and Kepler-generation GPUs have the boolean resources “fermi” and “kepler”, as well.
+
+To see the status of arbitrary complex resources on the queue, use qstat with the -F switch, like this:
+
+```
+qstat -q bungee.q,budge.q,gpu.q -F gpu,fermi,kepler
+```
+
+**Note that previous command is not working well in Eddie, see below**
+```
+qstat -q gpu -F gpus,gputype,mem_total 
+```
+
+If you submit to any gpu-enabled queue and intend to use the GPU for computation, you should submit with the switch “-l gpu=1”.
+
+Thus, if you were to run, for example:
+
+```
+cd /mnt/nokrb/yourusername
+qsub -q bungee.q -cwd -l gpu=1 -b y "./mycudaprogram"
+```
+
+That will pick a node in the gpu.q queue that has the gpu resource free, and will consume its resource. The machine still has another “slot” available for use by a qsub that does *not* request the gpu.
+
+Since there are 16 machines in the gpu.q queue with 2 CPUs each but only 1 GPU each, there are 32 slots total but only 16 slots of GPU. So if all the slots were empty, and you submit 17 jobs that each request “-l gpu=1”, the jobs will go to 16 hosts and one will wait in the queue for one of the jobs to finish so that a gpu frees up. So if you submit 16 jobs that each request a GPU and 16 that *don’t*, then they will all execute simultaneously and nothing will wait in the queue. For the bungee.q, there are 128 slots, because there are 8 cores in each bungee machine x 16 machines, but there are only 32 resources in the “gpu” complex, because there are 2 gpus in each bungee machine x 16 machines.
+
+If you specifically wanted two Fermi GPUs on the bungee.q, you would run:
+
+```
+qsub -q bungee.q -cwd -l gpu=2 -l fermi=true -b y "./mycudaprogram"
+```
+
+If you wanted to specifically avoid Fermi GPUs, you would use fermi=false. If you don’t care what kind of GPU you get, you would not bother putting the fermi= switch in there at all.
+
+Please do not request a gpu resource in the queue if you do not intend to use the gpu for that job, and likewise, please do not attempt to use the gpu in the queue without requesting the gpu resource — it will only slow things down for you to try have more GPU jobs running than you have GPUs in the system. Note that specifying “gpu=2” doesn’t actually change whether your code is *allowed* to use 2 GPUs or one — the “gpu” complex is just basically an honor system. It makes it so that you’ve “reserved” both GPUs on that machine for your own work, and as long as other people who are using 1 or 2 gpus also make sure to specify gpu=1 or gpu=2 accordingly, nobody should conflict. Of course, as soon as someone starts using gpu code without having reserved a gpu, this accounting doesn’t help anymore, so if you intend to use a gpu, please make sure to always request the complex.
+
+Likewise, if you request an interactive slot, make sure to “qlogin” to gpuinteractive.q and never to ssh directly into machines in the queue:
+
+```
+qlogin -q gpuinteractive.q -l gpu=1
+(for an interactive login where you intend to run GPU code)
+```
+or
+```
+qlogin -q gpu.q
+(for an interactive login where you do not intend to use the GPU.  NOTE WELL -- there's really no reason to do this!  For a basic login where you don't intend to use the GPU, there's no reason to use gpuinteractive.q at all -- use another queue that has far more slots in it, such as interactive.q!)
+```
+
+### EXAMPLE: Submitting a CUDA Job through qsub
+We recommend that once you’re running production jobs, you submit batch jobs (qsub) instead of interactive jobs (qlogin). Refer to Grid Cuda for step-by-step instructions on building a CUDA program in our environment, test your code on the command line, and then read below to batch it up.
+
+Set up Grid Engine as described at Grid Instructions , and write a shell script to include all of the switches you wish to use, putting both it and the binary you wish to run in your /mnt/nokrb directory.
+
+```
+#$ -V
+#$ -cwd
+#$ -q budge.q
+#$ -l fermi=false
+#$ -l gpu=1
+#$ -N yourJobName
+#$ -j y
+
+./yourCudaBinary
+```
+
+Now change to the /mnt/nokrb/yourusername directory where you put both the script and binary, and run:
+
+```
+qsub gridrun.sh
+```
+
+You could alternatively forego the shell script and put all of the switches on the command line, like this, but this gets unwieldy when there are too many options:
+
+```
+qsub -q qsub -V -cwd -q budge.q -l fermi=false -l gpu=1 -N yourJobName -j y -b y "./yourCudaBinary"
+```
+
+Note that this script uses the “-V” switch to put all of the libraries sourced in your current shell into the remote shell, and the “-j y” switch to join stdout (.o files) and stderr (.e files), and that it uses the “budge.q” and asks for one non-Fermi GPU. You could use the other queues, including bungee.q, if you need different features.
+
+### Submitting a CUDA Job with an nvidia-smi operation
+The gpu complex only reports the number of available GPUs on a node, trusting the users to have requested GPUs honestly using “-l gpu=#”. For more information, you can use deviceQuery or nvidia-smi, which report real-time GPU statistics.
+
+For deviceQuery, follow the instructions at http://www.resultsovercoffee.com/2011/02/cudavisibledevices.html
+
+Here is an example for using nvidia-smi to do something similar — to check available GPU memory on each GPU in the system and passes back the device number of the unloaded GPU which you could then use as an argument to your binary to run cudaSetDevice.
+
+```
+#$ -cwd
+hostname
+dev=`nvidia-smi -a | grep Free | awk '{print $3}'|./choose_device.sh`
+./command -device $dev
+```
+So just incorporate this into your own submission script and use it to pass an argument to your program to setCudaDevice appropriately.
+
+So, note that bungee.q has 2 GPUs per node and budge.q has 8, and in the third submission I specifically asked for Fermis:
+
+```
+bungee:/mnt/nokrb/kamalic$ qsub -q bungee.q nvidiamem.sh
+Your job 2334109 ("nvidiamem.sh") has been submitted
+bungee:/mnt/nokrb/kamalic$ qsub -q budge.q nvidiamem.sh
+Your job 2334110 ("nvidiamem.sh") has been submitted
+bungee:/mnt/nokrb/kamalic$ qsub -q bungee.q -l fermi=true nvidiamem.sh
+Your job 2334113 ("nvidiamem.sh") has been submitted
+bungee:/mnt/nokrb/kamalic$ more nvidiamem.sh.o*
+::::::::::::::
+nvidiamem.sh.o2334109
+::::::::::::::
+bungee16
+4092
+4092
+::::::::::::::
+nvidiamem.sh.o2334110
+::::::::::::::
+budge02.bu.edu
+4092
+4092
+4092
+4092
+4092
+4092
+4092
+4092
+::::::::::::::
+nvidiamem.sh.o2334113
+::::::::::::::
+bungee05
+5365
+5365
+```
+
+Below is an example on a machine which has two CUDA cards, showing how to use the CUDA_VISIBLE_DEVICES variable to show only one of the two devices, query it to see that it’s the only one showing up, and then running on that device:
+
+```
+hpcl-19:~/Class/cuda/cudademo$ 
+/ad/eng/support/software/linux/all/x86_64/cuda/cuda_sdk/C/bin/linux/release/deviceQuery -noprompt|egrep "^Device"
+[deviceQuery] starting...
+Device 0: "D14P2-30"
+Device 1: "Quadro NVS 295"
+[deviceQuery] test results...
+PASSED
+```
+NOTE that on some platforms, “nvidia-smi” actually MISREPORTS the device numbers! It’s best to use deviceQuery, or to sanity-check what’s being reported!
+
+```
+[So we see both devices.  Now we set only the first device visible:]
+
+hpcl-19:~/Class/cuda/cudademo$ export CUDA_VISIBLE_DEVICES="0"
+hpcl-19:~/Class/cuda/cudademo$ 
+/ad/eng/support/software/linux/all/x86_64/cuda/cuda_sdk/C/bin/linux/release/deviceQuery -noprompt|egrep "^Device"
+[deviceQuery] starting...
+Device 0: "D14P2-30"
+[deviceQuery] test results...
+PASSED
+hpcl-19:~/Class/cuda/cudademo$ ./cudademo
+[SNIP]
+9.000000 258064.000000 259081.000000 260100.000000 261121.000000
+
+[Now we set only the second device visible:]
+
+hpcl-19:~/Class/cuda/cudademo$ export CUDA_VISIBLE_DEVICES="1"
+hpcl-19:~/Class/cuda/cudademo$ 
+/ad/eng/support/software/linux/all/x86_64/cuda/cuda_sdk/C/bin/linux/release/deviceQuery -noprompt|egrep "^Device"
+[deviceQuery] starting...
+Device 0: "Quadro NVS 295"
+[deviceQuery] test results...
+PASSED
+hpcl-19:~/Class/cuda/cudademo$ ./cudademo
+[SNIP]
+9.000000 258064.000000 259081.000000 260100.000000 261121.000000
+hpcl-19:~/Class/cuda/cudademo$
+```
+Note that for a program as small as cudademo, any difference in speed between the two cards is meaningless.
+
 ## Ask for help
 
 Mike is really helpful when I was here. Every Thursday from 2-4 PM in 2022, we will be able to ask questions with Teams. You will be able to receive an email from Mike at that time :)

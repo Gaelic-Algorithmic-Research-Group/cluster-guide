@@ -5,11 +5,11 @@ output: html_document
 
 # Accessing the server clusters
 
-To access the server clusters, you must first request a user account. The request form can be found at <http://csc.cnsi.ucsb.edu/acct>. The job type selection should probably be Serial or Parallel, but select the option that best describes your needs. In the job type description you should describe any relevant information related to user groups, access to specific folders, or special software usage. If you need Stata, then you should request to be added to the `econ` group, which holds the license to use Stata. The system to be used should be Pod and Knot, which are the main Linux-based server clusters. Pod is the newest cluster and offers greater capabilities, but Knot is still adequate for most analysis needs and typically has less active users (i.e., a shorter job queue).
+You will naturally be able to use the server clusters as a University member. More tutorial could be found at <https://www.wiki.ed.ac.uk/display/ResearchServices/GPUs>. The job type selection should probably be Serial or Parallel, but select the option that best describes your needs. In the job type description you should describe any relevant information related to user groups, access to specific folders, or special software usage. If you need Stata, then you should request to be added to the `econ` group, which holds the license to use Stata. The system to be used should be Pod and Knot, which are the main Linux-based server clusters. Pod is the newest cluster and offers greater capabilities, but Knot is still adequate for most analysis needs and typically has less active users (i.e., a shorter job queue).
 
 ## On campus
 
-Once your account has been created, the clusters can be accessed on campus via a terminal emulator using the `ssh` command or via a GUI SSH app, such as [X2Go](https://wiki.x2go.org/doku.php). On macOS or Linux the default terminal apps can be used. On Windows the [PuTTY](https://www.putty.org/) or X2Go apps can be used. Once a terminal is started, connect to Knot by entering the command
+The clusters can be accessed on campus via a terminal emulator using the `ssh` command or via a GUI SSH app, such as [X2Go](https://wiki.x2go.org/doku.php). On macOS or Linux the default terminal apps can be used. On Windows the [PuTTY](https://www.putty.org/) or X2Go apps can be used. Once a terminal is started, connect to Knot by entering the command
 
 ```
 $ ssh user@eddie.ecdf.ed.ac.uk
@@ -29,4 +29,8 @@ To disconnect from the cluster, use the command `exit`.
 
 ## Off campus
 
-The clusters can be accessed off campus using the VPN service for secure remote access. Instructions for installing the VPN app can be found at <https://www.ed.ac.uk/information-services/computing/desktop-personal/vpn>. Once the app is installed, open it and select connect for Remote Access. You will then be prompted to enter your userid and the associated password. Once connected, indicated by a green checkmark, you can then access a cluster as you normally would on campus by using a terminal or GUI SSH app.
+The clusters can be accessed off campus using the VPN service for secure remote access. Instructions for installing the VPN app can be found at <https://www.ed.ac.uk/information-services/computing/desktop-personal/vpn>. Once the forticlient app is installed, open it and select connect for Remote Access. You will then be prompted to enter your userid and the associated password. Once connected, indicated by a green checkmark, you can then access a cluster as you normally would on campus by using a terminal or GUI SSH app.
+
+### More about VPN
+
+Note that forticlient VPN could be installed on Linux machine. More details could be found here:

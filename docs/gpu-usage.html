@@ -24,7 +24,7 @@
 <meta name="author" content="Junfan &amp; GitHub" />
 
 
-<meta name="date" content="2022-06-16" />
+<meta name="date" content="2022-08-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -68,7 +68,9 @@
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="1" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html"><i class="fa fa-check"></i><b>1</b> Accessing the server clusters</a><ul>
 <li class="chapter" data-level="1.1" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html#on-campus"><i class="fa fa-check"></i><b>1.1</b> On campus</a></li>
-<li class="chapter" data-level="1.2" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html#off-campus"><i class="fa fa-check"></i><b>1.2</b> Off campus</a></li>
+<li class="chapter" data-level="1.2" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html#off-campus"><i class="fa fa-check"></i><b>1.2</b> Off campus</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="accessing-the-server-clusters.html"><a href="accessing-the-server-clusters.html#more-about-vpn"><i class="fa fa-check"></i><b>1.2.1</b> More about VPN</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="managing-files.html"><a href="managing-files.html"><i class="fa fa-check"></i><b>2</b> Managing files</a><ul>
 <li class="chapter" data-level="2.1" data-path="managing-files.html"><a href="managing-files.html#navigation"><i class="fa fa-check"></i><b>2.1</b> Navigation</a></li>
@@ -97,7 +99,13 @@
 <li class="chapter" data-level="7" data-path="using-software-containers.html"><a href="using-software-containers.html"><i class="fa fa-check"></i><b>7</b> Using software containers</a></li>
 <li class="chapter" data-level="8" data-path="gpu-usage.html"><a href="gpu-usage.html"><i class="fa fa-check"></i><b>8</b> GPU Usage</a><ul>
 <li class="chapter" data-level="8.1" data-path="gpu-usage.html"><a href="gpu-usage.html#quick-start"><i class="fa fa-check"></i><b>8.1</b> Quick Start</a></li>
-<li class="chapter" data-level="8.2" data-path="gpu-usage.html"><a href="gpu-usage.html#ask-for-help"><i class="fa fa-check"></i><b>8.2</b> Ask for help</a></li>
+<li class="chapter" data-level="8.2" data-path="gpu-usage.html"><a href="gpu-usage.html#advanced-usage-adapted-from-bu.edu"><i class="fa fa-check"></i><b>8.2</b> Advanced Usage (Adapted from BU.EDU)</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="gpu-usage.html"><a href="gpu-usage.html#gpu-enabled-grid-queues"><i class="fa fa-check"></i><b>8.2.1</b> GPU-enabled Grid queues</a></li>
+<li class="chapter" data-level="8.2.2" data-path="gpu-usage.html"><a href="gpu-usage.html#using-gpu-resources"><i class="fa fa-check"></i><b>8.2.2</b> Using GPU resources</a></li>
+<li class="chapter" data-level="8.2.3" data-path="gpu-usage.html"><a href="gpu-usage.html#example-submitting-a-cuda-job-through-qsub"><i class="fa fa-check"></i><b>8.2.3</b> EXAMPLE: Submitting a CUDA Job through qsub</a></li>
+<li class="chapter" data-level="8.2.4" data-path="gpu-usage.html"><a href="gpu-usage.html#submitting-a-cuda-job-with-an-nvidia-smi-operation"><i class="fa fa-check"></i><b>8.2.4</b> Submitting a CUDA Job with an nvidia-smi operation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="gpu-usage.html"><a href="gpu-usage.html#ask-for-help"><i class="fa fa-check"></i><b>8.3</b> Ask for help</a></li>
 </ul></li>
 </ul>
 
@@ -125,8 +133,149 @@
 <p>The quickest way is to login to GPU nodes and run code on top of that.</p>
 <pre><code>qlogin -l h_rt=24:00:00 -l h_vmem=16G -pe gpu 4</code></pre>
 </div>
+<div id="advanced-usage-adapted-from-bu.edu" class="section level2">
+<h2><span class="header-section-number">8.2</span> Advanced Usage (Adapted from BU.EDU)</h2>
+<p>I found this University <a href="https://www.bu.edu/engit/knowledge-base/grid/gpu/" class="uri">https://www.bu.edu/engit/knowledge-base/grid/gpu/</a> had a simliar cluster system as we have in Eddie. Here is the tutorial adapted from that website in case it will disappear.</p>
+<div id="gpu-enabled-grid-queues" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> GPU-enabled Grid queues</h3>
+<p>The current GPU-enabled queues on the ENG-Grid are:</p>
+<p>Skill this.</p>
+<pre><code>gpu.q    -- 1 GPU and 2 CPU cores per 4GB RAM workstation node
+            Currently 16 nodes with a total of 16 GeForce Kepler GTX 650 (2GB) GPUs
+            (they additionally have small Quadro NVS GPUs (256MB) attached to the displays, not really useful for CUDA)
+budge.q  -- 8 GPUs and 8 CPU cores per 24GB RAM per node
+            Currently 2 nodes with a total of 16 GPUs:  8 non-Fermi Tesla M1060&#39;s (4GB), 6 Tesla Fermi M2050&#39;s, and 2 Tesla Fermi M2090&#39;s (6GB)
+bungee.q -- 2 or 3 GPUs and 8 CPU cores per 24GB RAM node, with QDR InfiniBand networking
+            Currently 3 nodes with 1 Tesla Kepler K20 (6GB) and 2 Tesla Fermi M2070/2075&#39;s (6GB) each, plus 13 nodes with 2 Tesla Fermi M2070/2075&#39;s (6GB) each. 
+            (Divided into bungee.q and bungee-exclusive.q for use by buy-in researchers)
+gpuinteractive.q -- a subset of budge.q intended for GPU but not CPU-intensive &quot;qlogin&quot; jobs</code></pre>
+<p>If you wish to be added to the permissions list to use these queues, please email.</p>
+</div>
+<div id="using-gpu-resources" class="section level3">
+<h3><span class="header-section-number">8.2.2</span> Using GPU resources</h3>
+<p>For GPU submission on the Grid, we have configured a consumable resource complex called “gpu” on these queues. Each host has an integer quantity of the gpu resource corresponding to the number of GPUs in it. Machines with Fermi and Kepler-generation GPUs have the boolean resources “fermi” and “kepler”, as well.</p>
+<p>To see the status of arbitrary complex resources on the queue, use qstat with the -F switch, like this:</p>
+<pre><code>qstat -q bungee.q,budge.q,gpu.q -F gpu,fermi,kepler</code></pre>
+<p><strong>Note that previous command is not working well in Eddie, see below</strong></p>
+<pre><code>qstat -q gpu -F gpus,gputype,mem_total </code></pre>
+<p>If you submit to any gpu-enabled queue and intend to use the GPU for computation, you should submit with the switch “-l gpu=1”.</p>
+<p>Thus, if you were to run, for example:</p>
+<pre><code>cd /mnt/nokrb/yourusername
+qsub -q bungee.q -cwd -l gpu=1 -b y &quot;./mycudaprogram&quot;</code></pre>
+<p>That will pick a node in the gpu.q queue that has the gpu resource free, and will consume its resource. The machine still has another “slot” available for use by a qsub that does <em>not</em> request the gpu.</p>
+<p>Since there are 16 machines in the gpu.q queue with 2 CPUs each but only 1 GPU each, there are 32 slots total but only 16 slots of GPU. So if all the slots were empty, and you submit 17 jobs that each request “-l gpu=1”, the jobs will go to 16 hosts and one will wait in the queue for one of the jobs to finish so that a gpu frees up. So if you submit 16 jobs that each request a GPU and 16 that <em>don’t</em>, then they will all execute simultaneously and nothing will wait in the queue. For the bungee.q, there are 128 slots, because there are 8 cores in each bungee machine x 16 machines, but there are only 32 resources in the “gpu” complex, because there are 2 gpus in each bungee machine x 16 machines.</p>
+<p>If you specifically wanted two Fermi GPUs on the bungee.q, you would run:</p>
+<pre><code>qsub -q bungee.q -cwd -l gpu=2 -l fermi=true -b y &quot;./mycudaprogram&quot;</code></pre>
+<p>If you wanted to specifically avoid Fermi GPUs, you would use fermi=false. If you don’t care what kind of GPU you get, you would not bother putting the fermi= switch in there at all.</p>
+<p>Please do not request a gpu resource in the queue if you do not intend to use the gpu for that job, and likewise, please do not attempt to use the gpu in the queue without requesting the gpu resource — it will only slow things down for you to try have more GPU jobs running than you have GPUs in the system. Note that specifying “gpu=2” doesn’t actually change whether your code is <em>allowed</em> to use 2 GPUs or one — the “gpu” complex is just basically an honor system. It makes it so that you’ve “reserved” both GPUs on that machine for your own work, and as long as other people who are using 1 or 2 gpus also make sure to specify gpu=1 or gpu=2 accordingly, nobody should conflict. Of course, as soon as someone starts using gpu code without having reserved a gpu, this accounting doesn’t help anymore, so if you intend to use a gpu, please make sure to always request the complex.</p>
+<p>Likewise, if you request an interactive slot, make sure to “qlogin” to gpuinteractive.q and never to ssh directly into machines in the queue:</p>
+<pre><code>qlogin -q gpuinteractive.q -l gpu=1
+(for an interactive login where you intend to run GPU code)</code></pre>
+<p>or</p>
+<pre><code>qlogin -q gpu.q
+(for an interactive login where you do not intend to use the GPU.  NOTE WELL -- there&#39;s really no reason to do this!  For a basic login where you don&#39;t intend to use the GPU, there&#39;s no reason to use gpuinteractive.q at all -- use another queue that has far more slots in it, such as interactive.q!)</code></pre>
+</div>
+<div id="example-submitting-a-cuda-job-through-qsub" class="section level3">
+<h3><span class="header-section-number">8.2.3</span> EXAMPLE: Submitting a CUDA Job through qsub</h3>
+<p>We recommend that once you’re running production jobs, you submit batch jobs (qsub) instead of interactive jobs (qlogin). Refer to Grid Cuda for step-by-step instructions on building a CUDA program in our environment, test your code on the command line, and then read below to batch it up.</p>
+<p>Set up Grid Engine as described at Grid Instructions , and write a shell script to include all of the switches you wish to use, putting both it and the binary you wish to run in your /mnt/nokrb directory.</p>
+<pre><code>#$ -V
+#$ -cwd
+#$ -q budge.q
+#$ -l fermi=false
+#$ -l gpu=1
+#$ -N yourJobName
+#$ -j y
+
+./yourCudaBinary</code></pre>
+<p>Now change to the /mnt/nokrb/yourusername directory where you put both the script and binary, and run:</p>
+<pre><code>qsub gridrun.sh</code></pre>
+<p>You could alternatively forego the shell script and put all of the switches on the command line, like this, but this gets unwieldy when there are too many options:</p>
+<pre><code>qsub -q qsub -V -cwd -q budge.q -l fermi=false -l gpu=1 -N yourJobName -j y -b y &quot;./yourCudaBinary&quot;</code></pre>
+<p>Note that this script uses the “-V” switch to put all of the libraries sourced in your current shell into the remote shell, and the “-j y” switch to join stdout (.o files) and stderr (.e files), and that it uses the “budge.q” and asks for one non-Fermi GPU. You could use the other queues, including bungee.q, if you need different features.</p>
+</div>
+<div id="submitting-a-cuda-job-with-an-nvidia-smi-operation" class="section level3">
+<h3><span class="header-section-number">8.2.4</span> Submitting a CUDA Job with an nvidia-smi operation</h3>
+<p>The gpu complex only reports the number of available GPUs on a node, trusting the users to have requested GPUs honestly using “-l gpu=#”. For more information, you can use deviceQuery or nvidia-smi, which report real-time GPU statistics.</p>
+<p>For deviceQuery, follow the instructions at <a href="http://www.resultsovercoffee.com/2011/02/cudavisibledevices.html" class="uri">http://www.resultsovercoffee.com/2011/02/cudavisibledevices.html</a></p>
+<p>Here is an example for using nvidia-smi to do something similar — to check available GPU memory on each GPU in the system and passes back the device number of the unloaded GPU which you could then use as an argument to your binary to run cudaSetDevice.</p>
+<pre><code>#$ -cwd
+hostname
+dev=`nvidia-smi -a | grep Free | awk &#39;{print $3}&#39;|./choose_device.sh`
+./command -device $dev</code></pre>
+<p>So just incorporate this into your own submission script and use it to pass an argument to your program to setCudaDevice appropriately.</p>
+<p>So, note that bungee.q has 2 GPUs per node and budge.q has 8, and in the third submission I specifically asked for Fermis:</p>
+<pre><code>bungee:/mnt/nokrb/kamalic$ qsub -q bungee.q nvidiamem.sh
+Your job 2334109 (&quot;nvidiamem.sh&quot;) has been submitted
+bungee:/mnt/nokrb/kamalic$ qsub -q budge.q nvidiamem.sh
+Your job 2334110 (&quot;nvidiamem.sh&quot;) has been submitted
+bungee:/mnt/nokrb/kamalic$ qsub -q bungee.q -l fermi=true nvidiamem.sh
+Your job 2334113 (&quot;nvidiamem.sh&quot;) has been submitted
+bungee:/mnt/nokrb/kamalic$ more nvidiamem.sh.o*
+::::::::::::::
+nvidiamem.sh.o2334109
+::::::::::::::
+bungee16
+4092
+4092
+::::::::::::::
+nvidiamem.sh.o2334110
+::::::::::::::
+budge02.bu.edu
+4092
+4092
+4092
+4092
+4092
+4092
+4092
+4092
+::::::::::::::
+nvidiamem.sh.o2334113
+::::::::::::::
+bungee05
+5365
+5365</code></pre>
+<p>Below is an example on a machine which has two CUDA cards, showing how to use the CUDA_VISIBLE_DEVICES variable to show only one of the two devices, query it to see that it’s the only one showing up, and then running on that device:</p>
+<pre><code>hpcl-19:~/Class/cuda/cudademo$ 
+/ad/eng/support/software/linux/all/x86_64/cuda/cuda_sdk/C/bin/linux/release/deviceQuery -noprompt|egrep &quot;^Device&quot;
+[deviceQuery] starting...
+Device 0: &quot;D14P2-30&quot;
+Device 1: &quot;Quadro NVS 295&quot;
+[deviceQuery] test results...
+PASSED</code></pre>
+<p>NOTE that on some platforms, “nvidia-smi” actually MISREPORTS the device numbers! It’s best to use deviceQuery, or to sanity-check what’s being reported!</p>
+<pre><code>[So we see both devices.  Now we set only the first device visible:]
+
+hpcl-19:~/Class/cuda/cudademo$ export CUDA_VISIBLE_DEVICES=&quot;0&quot;
+hpcl-19:~/Class/cuda/cudademo$ 
+/ad/eng/support/software/linux/all/x86_64/cuda/cuda_sdk/C/bin/linux/release/deviceQuery -noprompt|egrep &quot;^Device&quot;
+[deviceQuery] starting...
+Device 0: &quot;D14P2-30&quot;
+[deviceQuery] test results...
+PASSED
+hpcl-19:~/Class/cuda/cudademo$ ./cudademo
+[SNIP]
+9.000000 258064.000000 259081.000000 260100.000000 261121.000000
+
+[Now we set only the second device visible:]
+
+hpcl-19:~/Class/cuda/cudademo$ export CUDA_VISIBLE_DEVICES=&quot;1&quot;
+hpcl-19:~/Class/cuda/cudademo$ 
+/ad/eng/support/software/linux/all/x86_64/cuda/cuda_sdk/C/bin/linux/release/deviceQuery -noprompt|egrep &quot;^Device&quot;
+[deviceQuery] starting...
+Device 0: &quot;Quadro NVS 295&quot;
+[deviceQuery] test results...
+PASSED
+hpcl-19:~/Class/cuda/cudademo$ ./cudademo
+[SNIP]
+9.000000 258064.000000 259081.000000 260100.000000 261121.000000
+hpcl-19:~/Class/cuda/cudademo$</code></pre>
+<p>Note that for a program as small as cudademo, any difference in speed between the two cards is meaningless.</p>
+</div>
+</div>
 <div id="ask-for-help" class="section level2">
-<h2><span class="header-section-number">8.2</span> Ask for help</h2>
+<h2><span class="header-section-number">8.3</span> Ask for help</h2>
 <p>Mike is really helpful when I was here. Every Thursday from 2-4 PM in 2022, we will be able to ask questions with Teams. You will be able to receive an email from Mike at that time :)</p>
 
 </div>

@@ -16,7 +16,6 @@ You will have three steps to go:
 - Module load as ususal: `module load package/version_num
 ## Example of python 3.10
 
-
 - Install python 3.10 from official website (skip)
 
 - Configure HPC (just do it once)
